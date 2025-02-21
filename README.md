@@ -47,5 +47,5 @@ UpTask es una aplicación de administración de tareas basada en el stack **MERN
 ### 🔥 Clonar repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/uptask-mern-ts.git
+git https://github.com/AntonioValentinSayago/uptask-administrador-tareas-ts
 cd uptask-mern-ts
