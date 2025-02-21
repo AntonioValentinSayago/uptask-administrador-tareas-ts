@@ -1,8 +1,51 @@
-# React + Vite V 1.1.2
+# UpTask - Task Manager 📝
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+UpTask es una aplicación de administración de tareas basada en el stack **MERN** (**MongoDB, Express, React, Node.js**) con **TypeScript**, diseñada para facilitar la gestión de proyectos y tareas en equipo.
 
-Currently, two official plugins are available:
+## 🚀 Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔐 **Autenticación y autorización** (JWT + Cookies)
+- 👥 **Gestión de usuarios** (Registro, inicio de sesión, recuperación de contraseña)
+- 📌 **Administración de proyectos** (CRUD de proyectos)
+- ✅ **Gestión de tareas** (Crear, editar, eliminar y marcar como completadas)
+- 📩 **Invitaciones a colaboradores**
+- 🎨 **Interfaz moderna y responsiva** con **React + Tailwind CSS**
+- ⚡ **Back-end eficiente** con **Node.js + Express**
+- 🛢 **Base de datos NoSQL** con **MongoDB y Mongoose**
+- ✅ **Validaciones y seguridad** con **Zod y bcrypt**
+- 📬 **Notificaciones por email** con **Nodemailer**
+- 🌐 **Despliegue en producción** con **Vercel y Render**
+
+---
+
+## 🛠️ Tecnologías utilizadas
+
+### 📌 Frontend
+- ⚛️ **React** + **Vite**
+- 🏷 **TypeScript**
+- 🎨 **Tailwind CSS**
+- 🌍 **React Router DOM**
+- 🔥 **Context API / Zustand**
+
+### 📌 Backend
+- 🟢 **Node.js** + **Express**
+- 🛢 **MongoDB** + **Mongoose**
+- 🔑 **JSON Web Tokens (JWT)** + **bcrypt**
+- 📧 **Nodemailer** (Para recuperación de contraseñas)
+- 📝 **Zod** (Validaciones)
+
+---
+
+## 🚀 Instalación y ejecución
+
+### 🔧 Requisitos previos
+
+- [Node.js](https://nodejs.org/)
+- [MongoDB](https://www.mongodb.com/)
+- [PNPM](https://pnpm.io/) (opcional, puedes usar npm o yarn)
+
+### 🔥 Clonar repositorio
+
+```bash
+git clone https://github.com/tu-usuario/uptask-mern-ts.git
+cd uptask-mern-ts
