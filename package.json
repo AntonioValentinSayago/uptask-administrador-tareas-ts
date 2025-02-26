@@ -1,0 +1,33 @@
+{
+  "name": "uptask-administrador-tareas-ts",
+  "version": "1.0.0",
+  "description": "UpTask es una aplicación de administración de tareas basada en el stack **MERN** (**MongoDB, Express, React, Node.js**) con **TypeScript**, diseñada para facilitar la gestión de proyectos y tareas en equipo.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AntonioValentinSayago/uptask-administrador-tareas-ts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AntonioValentinSayago/uptask-administrador-tareas-ts/issues"
+  },
+  "homepage": "https://github.com/AntonioValentinSayago/uptask-administrador-tareas-ts#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.10.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
