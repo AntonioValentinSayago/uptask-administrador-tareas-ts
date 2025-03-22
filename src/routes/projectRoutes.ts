@@ -3,7 +3,8 @@ import { body, param } from "express-validator";
 import { ProjectController } from "../controllers/ProjectController";
 import { handleInputErrors } from "../middleware/validations";
 import { TaskController } from "../controllers/TaskController";
-import { validateProjectExists } from "../middleware/project";
+import { projectExists } from "../middleware/project";
+import { taskBelongsToProject, taskExists } from "../middleware/task";
 
 const router = Router();
 
@@ -45,7 +46,7 @@ router.delete('/:id',
 
 //** Routes for tasks */
 
-router.param('projectId', validateProjectExists);
+router.param('projectId', projectExists);
 
 router.post('/:projectId/tasks',
     body('name')
@@ -59,6 +60,9 @@ router.post('/:projectId/tasks',
 router.get('/:projectId/tasks',
     TaskController.getProjectsTasks
 )
+
+router.param('taskId', taskExists)
+router.param('taskId', taskBelongsToProject) // Middeware taskBelongsToProject
 
 router.get('/:projectId/tasks/:taskId',
     param('taskId').isMongoId().withMessage('El id del proyecto no es válido'),
