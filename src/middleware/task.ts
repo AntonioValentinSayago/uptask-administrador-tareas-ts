@@ -24,3 +24,11 @@ export async function taskExists(req: Request, res: Response, next: NextFunction
         res.status(500).json({ error: 'Internal server error' });
     }
 }
+
+export function taskBelongsToProject(req: Request, res: Response, next: NextFunction): Promise<void> {
+    if (req.task.project.toString() !== req.project.id.toString()) {
+        res.status(400).json({ error: 'Accion no permitida' });
+        return;
+    }
+    next();
+}
