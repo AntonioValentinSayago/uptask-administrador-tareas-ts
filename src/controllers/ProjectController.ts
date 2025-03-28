@@ -1,18 +1,19 @@
 import type { Request, Response } from "express";
 import Project from "../models/Project";
+import e from "express";
 
 export class ProjectController {
 
     static createProjects = async (req: Request, res: Response) => {
 
         const project = new Project(req.body);
+        console.log(project)
         try {
             await project.save();
             // await Project.create(req.body);  Otra forma de como guardar un proyecto
             res.send("Proyecto Creado Correctamente");
         } catch (error) {
             console.log(error);
-            res.status(500).send("Hubo un error en el servidor");
         }
 
     }
