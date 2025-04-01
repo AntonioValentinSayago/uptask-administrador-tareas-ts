@@ -3,7 +3,7 @@ import { z } from 'zod'
 /** Auth & Users */
 const authSchema = z.object({
     name: z.string(),
-    email: z.string().email(),
+    email: z.string().email(), 
     current_password: z.string(),
     password: z.string(),
     password_confirmation: z.string(),
@@ -90,7 +90,6 @@ export const dashboardProjectSchema = z.array(
         projectName: true,
         clientName: true,
         description: true,
-        manager: true
     })
 )
 export const editProjectSchema = projectSchema.pick({
