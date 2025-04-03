@@ -46,10 +46,10 @@ export class ProjectController {
 
         const { id } = req.params;
         try {
-            const project = await Project.findById(id, req.body)
+            const project = await Project.findById(id)
             if (!project) {
                 const error = new Error("Proyecto no encontrado");
-                res.status(404).json({ msg: error });
+                res.status(404).json({ error: error.message });
                 return;
             }
             project.clientName = req.body.clientName;
@@ -59,7 +59,6 @@ export class ProjectController {
             res.send("Proyecto actualizado correctamente");
         } catch (error) {
             console.log(error);
-            res.status(500).send("Hubo un error en el servidor");
         }
     }
 
