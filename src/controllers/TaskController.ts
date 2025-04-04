@@ -11,7 +11,7 @@ export class TaskController {
             await Promise.allSettled([task.save(), req.project.save()]);
             res.send('Tarea Creada Correctamente');
         } catch (error) {
-            res.status(500).json({error: 'Hubo un error'})
+            res.status(500).json({ error: 'Hubo un error' })
         }
     }
     static getProjectsTasks = async (req: Request, res: Response) => {
@@ -19,18 +19,18 @@ export class TaskController {
             const tasks = await Task.find({ project: req.project.id }).populate('project');
             res.json(tasks);
         } catch (error) {
-            res.status(500).send({error: 'Hubo un error'});
+            res.status(500).send({ error: 'Hubo un error' });
         }
     }
     static getTaskById = async (req: Request, res: Response) => {
         try {
-            if(req.task.project !== req.project.id) {
-                res.status(400).json({error: 'Accion no permitida'});
+            if (req.task.project.toString() !== req.project.id) {
+                res.status(400).json({ error: 'Accion no permitida' });
                 return;
             }
             res.json(req.task);
         } catch (error) {
-            res.status(500).json({error: 'Hubo un error'});
+            res.status(500).json({ error: 'Hubo un error' });
             console.log(error)
         }
     }
@@ -42,7 +42,7 @@ export class TaskController {
             await req.task.save();
             res.send("Tarea actualizada correctamente");
         } catch (error) {
-            res.status(500).json({error: 'Hubo un error'});
+            res.status(500).json({ error: 'Hubo un error' });
             console.log(error)
         }
     }
@@ -54,7 +54,7 @@ export class TaskController {
 
             res.send("Tarea eliminada correctamente");
         } catch (error) {
-            res.status(500).json({error: 'Hubo un error'});
+            res.status(500).json({ error: 'Hubo un error' });
             console.log(error)
         }
     }
@@ -66,7 +66,7 @@ export class TaskController {
             await req.task.save();
             res.send("Estado de la tarea actualizado correctamente");
         } catch (error) {
-            res.status(500).json({error: 'Hubo un error'});
+            res.status(500).json({ error: 'Hubo un error' });
         }
     }
 }
