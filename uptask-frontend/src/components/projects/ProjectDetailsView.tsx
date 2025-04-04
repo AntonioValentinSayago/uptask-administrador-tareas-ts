@@ -3,6 +3,7 @@ import { Link, Navigate, useNavigate, useParams } from "react-router-dom"
 import { getProjectById } from "../../api/ProjectApi"
 import AddTaskModal from "../task/AddTaskModal"
 import TaskList from "../task/TaskList"
+import EditTaskData from "../task/EditTaskData"
 
 export default function ProjectDetailsView() {
     const navigate = useNavigate()
@@ -17,7 +18,6 @@ export default function ProjectDetailsView() {
 
     if (isLoading) return 'Cargando...'
     if (isError) return <Navigate to='/404' />
-    console.log(data)
     if (data) return (
         <>
             <h1 className="text-5xl font-black">{data.projectName}</h1>
@@ -40,6 +40,7 @@ export default function ProjectDetailsView() {
             <TaskList 
                 tasks={data.tasks} canEdit={false}            />
             <AddTaskModal />
+            <EditTaskData />
 
         </>
     )
