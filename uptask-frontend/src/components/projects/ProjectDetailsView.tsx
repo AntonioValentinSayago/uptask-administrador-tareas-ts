@@ -38,7 +38,8 @@ export default function ProjectDetailsView() {
             </nav>
 
             <TaskList 
-                tasks={data.tasks} canEdit={false}            />
+                tasks={data.tasks} canEdit={false}
+            />
             <AddTaskModal />
             <EditTaskData />
 
