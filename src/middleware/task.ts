@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from 'express';
-import Project, { ITask } from '../models/Task';
+import Task, { ITask } from '../models/Task';
 
 declare global {
     namespace Express {
@@ -9,19 +9,18 @@ declare global {
     }
 }
 
-export async function taskExists(req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function taskExists( req: Request, res: Response, next: NextFunction ) {
     try {
-        const { taskId } = req.params;
-        const task = await Project.findById(taskId);
-        if (!task) {
-            const error = new Error('Tarea no enontrada');
-            res.status(404).json({ error: error.message });
-            return;
+        const { taskId } = req.params
+        const task = await Task.findById(taskId)
+        if(!task) {
+            const error = new Error('Tarea no encontrada')
+            return res.status(404).json({error: error.message})
         }
-        req.task = task;
-        next();
+        req.task = task
+        next()
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Hubo un error'})
     }
 }
 

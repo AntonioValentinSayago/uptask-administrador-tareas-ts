@@ -66,7 +66,7 @@ export class TaskController {
             await req.task.save();
             res.send("Estado de la tarea actualizado correctamente");
         } catch (error) {
-            res.status(500).json({ error: 'Hubo un error' });
+            res.status(500).json({ error: 'Hubo un error al act' });
         }
     }
 }
