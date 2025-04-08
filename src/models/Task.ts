@@ -2,17 +2,17 @@ import mongoose, { Schema, Document, Types } from 'mongoose';
 
 const taskStatus = {
     PENDING: 'pending',
-    IN_PROGRESS: 'in_progress',
+    IN_PROGRESS: 'inProgress',
     COMPLETED: 'completed',
-    UNDER_REVIEW: 'under_review',
-    ON_HOLD: 'on_hold'
+    UNDER_REVIEW: 'underReview',
+    ON_HOLD: 'onHold'
 } as const;
 export type TaskStatus = typeof taskStatus[keyof typeof taskStatus];
 
 export interface ITask extends Document {
     name: string
     description: string
-    project: Types.ObjectId,
+    project: Types.ObjectId
     status: TaskStatus
 }
 
