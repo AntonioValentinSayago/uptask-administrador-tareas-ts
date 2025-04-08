@@ -53,6 +53,7 @@ export default function TaskCard({ task }: TaskCardProps) {
                             <Menu.Item>
                                 <button 
                                     type='button' className='block px-3 py-1 text-sm leading-6 text-gray-900'
+                                    onClick={() => navigate(location.pathname + `?viewTask=${task._id}`)}
                                 >
                                     Ver Tarea
                                 </button>
