@@ -5,8 +5,12 @@ import { handleInputErrors } from "../middleware/validations";
 import { TaskController } from "../controllers/TaskController";
 import { projectExists } from "../middleware/project";
 import { taskBelongsToProject, taskExists } from "../middleware/task";
+import { authenticate } from "../middleware/auth";
+import { TeamMemberController } from "../controllers/TeamMemberController";
 
 const router = Router();
+
+router.use(authenticate); // Middleware to authenticate all routes
 
 router.post('/',
     body('projectName')
@@ -89,8 +93,35 @@ router.delete('/:projectId/tasks/:taskId',
 router.post('/:projectId/tasks/:taskId/status',
     param('taskId').isMongoId().withMessage('El id del proyecto no es válido'),
     body('status')
-    .notEmpty().withMessage('El estado de la tarea es requerido'),
+        .notEmpty().withMessage('El estado de la tarea es requerido'),
     handleInputErrors,
     TaskController.updateStatus
 )
+
+/** Routes for teams */
+router.post('/:projectId/team/find',
+    body('email')
+        .isEmail().toLowerCase().withMessage('E-mail no válido'),
+    handleInputErrors,
+    TeamMemberController.findMemberByEmail
+)
+
+router.get('/:projectId/team',
+    TeamMemberController.getProjecTeam
+)
+
+router.post('/:projectId/team',
+    body('id')
+        .isMongoId().withMessage('ID No válido'),
+    handleInputErrors,
+    TeamMemberController.addMemberById
+)
+
+router.delete('/:projectId/team/:userId',
+    param('userId')
+        .isMongoId().withMessage('ID No válido'),
+    handleInputErrors,
+    TeamMemberController.removeMemberById
+)
+
 export default router;
