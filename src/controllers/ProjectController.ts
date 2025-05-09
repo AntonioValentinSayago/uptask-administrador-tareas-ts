@@ -25,10 +25,10 @@ export class ProjectController {
         try {
             const projects = await Project.find({
                 // ! Validar el rol del usuario
-                // $or: [
-                //     { manager: { $in: req.user._id } },
-                //     { team: { $in: req.user._id } } 
-                // ]
+                $or: [
+                    { manager: { $in: req.user._id } },
+                    { team: { $in: req.user._id } }
+                ]
             });
             res.json(projects);
         } catch (error) {
@@ -45,7 +45,9 @@ export class ProjectController {
                 res.status(404).json({ error: error.message })
                 return;
             }
-            if (project.manager.toString() !== req.user.id.toString()) {
+            if (project.manager.toString() !== req.user.id.toString()
+                && !project.team.indexOf(req.user.id) // * Validar si el usuario es parte del equipo
+            ) {
                 const error = new Error('Acción no válida')
                 res.status(404).json({ error: error.message })
                 return
@@ -92,7 +94,7 @@ export class ProjectController {
                 res.status(404).json({ msg: error });
                 return;
             }
-            
+
             if (project.manager.toString() !== req.user.id.toString()) {
                 const error = new Error('Acción no válida - Manager no válido')
                 res.status(404).json({ error: error.message })
