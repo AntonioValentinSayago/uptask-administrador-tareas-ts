@@ -47,7 +47,7 @@ export default function TaskList({ tasks, canEdit }: TaskListProps) {
                             {tasks.length === 0 ? (
                                 <li className="text-gray-500 text-center pt-3">No Hay tareas</li>
                             ) : (
-                                tasks.map(task => <TaskCard key={task._id} task={task} canEdit={false} />)
+                                tasks.map(task => <TaskCard key={task._id} task={task} canEdit={canEdit} />)
                             )}
                         </ul>
                     </div>
