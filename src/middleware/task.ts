@@ -31,3 +31,12 @@ export function taskBelongsToProject(req: Request, res: Response, next: NextFunc
     }
     next();
 }
+
+export function hasAuthorization(req: Request, res: Response, next: NextFunction ): Promise<void> {
+    if( req.user.id.toString() !== req.project.manager.toString() ) {
+        const error = new Error('Acción no válida')
+        res.status(400).json({error: error.message}) 
+        return;
+    }
+    next()
+}
