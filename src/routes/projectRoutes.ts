@@ -4,9 +4,10 @@ import { ProjectController } from "../controllers/ProjectController";
 import { handleInputErrors } from "../middleware/validations";
 import { TaskController } from "../controllers/TaskController";
 import { projectExists } from "../middleware/project";
-import { taskBelongsToProject, taskExists } from "../middleware/task";
+import { hasAuthorization, taskBelongsToProject, taskExists } from "../middleware/task";
 import { authenticate } from "../middleware/auth";
 import { TeamMemberController } from "../controllers/TeamMemberController";
+import { NotesController } from "../controllers/NotesController";
 
 const router = Router();
 
@@ -53,6 +54,7 @@ router.delete('/:id',
 router.param('projectId', projectExists);
 
 router.post('/:projectId/tasks',
+    hasAuthorization,
     body('name')
         .notEmpty().withMessage('El nombre dea la tarea es requerida'),
     body('description')
@@ -75,6 +77,7 @@ router.get('/:projectId/tasks/:taskId',
 )
 
 router.put('/:projectId/tasks/:taskId',
+    hasAuthorization,
     param('taskId').isMongoId().withMessage('El id del proyecto no es válido'),
     body('name')
         .notEmpty().withMessage('El nombre dea la tarea es requerida'),
@@ -85,6 +88,7 @@ router.put('/:projectId/tasks/:taskId',
 )
 
 router.delete('/:projectId/tasks/:taskId',
+    hasAuthorization,
     param('taskId').isMongoId().withMessage('El id del proyecto no es válido'),
     handleInputErrors,
     TaskController.deleteTask
@@ -122,6 +126,24 @@ router.delete('/:projectId/team/:userId',
         .isMongoId().withMessage('ID No válido'),
     handleInputErrors,
     TeamMemberController.removeMemberById
+)
+
+/** Routes for Nots */
+router.post('/:projectId/tasks/:taskId/notes',
+    body('content')
+        .notEmpty().withMessage('El contenido de la nota es requerido'),
+    handleInputErrors,
+    NotesController.createNote
+)
+
+router.get('/:projectId/tasks/:taskId/notes',
+    NotesController.getTaskNotes
+)
+
+ router.delete('/:projectId/tasks/:taskId/notes/:noteId',
+     param('noteId').isMongoId().withMessage('ID No Válido'),
+     handleInputErrors,
+     NotesController.deleteNote
 )
 
 export default router;
