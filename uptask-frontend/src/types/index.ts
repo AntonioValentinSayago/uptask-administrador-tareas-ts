@@ -31,7 +31,7 @@ export type User = z.infer<typeof userSchema>
 export type UserProfileForm = Pick<User, 'name' | 'email'>
 
 /** Notes */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+/**  eslint-disable-next-line @typescript-eslint/no-unused-vars */
 const noteSchema = z.object({
     _id: z.string(),
     content: z.string(),
