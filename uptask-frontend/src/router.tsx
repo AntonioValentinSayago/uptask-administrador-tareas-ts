@@ -28,7 +28,7 @@ export default function Router() {
                     <Route path='/projects/:projectId/team' element={<ProjectTeamView />} />
                     <Route element={<ProfileLayout />}>
                         <Route path="/profile" element={<ProfileView />} />
-                        <Route path="/profile/passwors" element={<ChangePasswordView />} />
+                        <Route path="/profile/password" element={<ChangePasswordView />} />
                     </Route>
                 </Route>
                 <Route element={<AuthLayout />}>
