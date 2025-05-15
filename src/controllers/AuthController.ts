@@ -66,7 +66,7 @@ export class AuthController {
         }
     }
 
-    static login = async (req: Request, res: Response): Promise<void>=> {
+    static login = async (req: Request, res: Response): Promise<void> => {
         try {
             const { email, password } = req.body
             const user = await User.findOne({ email })
@@ -96,13 +96,13 @@ export class AuthController {
 
             // Comprobar el password
             const isPasswordCorrect = await checkPassword(password, user.password);
-            if(!isPasswordCorrect) {
+            if (!isPasswordCorrect) {
                 const error = new Error('Password Incorrecto')
                 res.status(401).json({ error: error.message })
                 return;
             }
 
-            const token = generateJWT({id: user.id})
+            const token = generateJWT({ id: user.id })
             res.send(token)
 
         } catch (error) {
@@ -122,7 +122,7 @@ export class AuthController {
                 return
             }
 
-            if(user.confirmed) {
+            if (user.confirmed) {
                 const error = new Error('El Usuario ya esta confirmado')
                 res.status(403).json({ error: error.message })
                 return;
@@ -177,7 +177,7 @@ export class AuthController {
             res.status(500).json({ error: 'Hubo un error' })
         }
     }
-    
+
     static validateToken = async (req: Request, res: Response): Promise<void> => {
         try {
             const { token } = req.body
@@ -222,13 +222,13 @@ export class AuthController {
         return;
     }
 
-    static updateProfile = async (req: Request, res: Response) : Promise<void> => {
+    static updateProfile = async (req: Request, res: Response): Promise<void> => {
         const { name, email } = req.body
 
-        const userExists = await User.findOne({email})
-        if(userExists && userExists.id.toString() !== req.user.id.toString() ) {
+        const userExists = await User.findOne({ email })
+        if (userExists && userExists.id.toString() !== req.user.id.toString()) {
             const error = new Error('Ese email ya esta registrado')
-            res.status(409).json({error: error.message})
+            res.status(409).json({ error: error.message })
             return;
         }
 
@@ -243,15 +243,15 @@ export class AuthController {
         }
     }
 
-    static updateCurrentUserPassword = async (req: Request, res: Response) : Promise<void> => {
+    static updateCurrentUserPassword = async (req: Request, res: Response): Promise<void> => {
         const { current_password, password } = req.body
 
         const user = await User.findById(req.user.id)
 
         const isPasswordCorrect = await checkPassword(current_password, user.password)
-        if(!isPasswordCorrect) {
+        if (!isPasswordCorrect) {
             const error = new Error('El Password actual es incorrecto')
-            res.status(401).json({error: error.message})
+            res.status(401).json({ error: error.message })
             return;
         }
 
@@ -262,5 +262,20 @@ export class AuthController {
         } catch (error) {
             res.status(500).send('Hubo un error')
         }
-    } 
+    }
+
+    static checkPassword = async (req: Request, res: Response): Promise<void> => {
+        const { password } = req.body
+
+        const user = await User.findById(req.user.id)
+
+        const isPasswordCorrect = await checkPassword(password, user.password)
+        if (!isPasswordCorrect) {
+            const error = new Error('El Password es incorrecto')
+            res.status(401).json({ error: error.message })
+            return;
+        }
+
+        res.send('Password Correcto')
+    }
 }
