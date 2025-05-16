@@ -32,6 +32,9 @@ router.get('/:id',
     handleInputErrors,
     ProjectController.getProjectById);
 
+//** Routes for tasks */
+router.param('projectId', projectExists);
+
 router.put('/:id',
     param('id').isMongoId().withMessage('El id del proyecto no es válido'),
     body('projectName')
@@ -48,10 +51,6 @@ router.delete('/:id',
     handleInputErrors,
     ProjectController.deleteProject
 );
-
-//** Routes for tasks */
-
-router.param('projectId', projectExists);
 
 router.post('/:projectId/tasks',
     hasAuthorization,
@@ -140,10 +139,10 @@ router.get('/:projectId/tasks/:taskId/notes',
     NotesController.getTaskNotes
 )
 
- router.delete('/:projectId/tasks/:taskId/notes/:noteId',
-     param('noteId').isMongoId().withMessage('ID No Válido'),
-     handleInputErrors,
-     NotesController.deleteNote
+router.delete('/:projectId/tasks/:taskId/notes/:noteId',
+    param('noteId').isMongoId().withMessage('ID No Válido'),
+    handleInputErrors,
+    NotesController.deleteNote
 )
 
 export default router;

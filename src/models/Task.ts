@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document, Types } from 'mongoose';
+import Note from './Notes';
 
 const taskStatus = {
     PENDING: 'pending',
@@ -34,5 +35,13 @@ export const TaskSchema = new Schema({
     ],
     notes: [{ type: Types.ObjectId, ref: 'Note' }]
 }, { timestamps: true })
+
+// Middleware to set the status of the task to 'inProgress' when a user starts working on it
+TaskSchema.pre('deleteOne', {document: true}, async function() {
+    const taskId = this._id
+    if(!taskId) return
+    await Note.deleteMany({task: taskId})
+})
+
 const Task = mongoose.model<ITask>('Task', TaskSchema)
 export default Task
