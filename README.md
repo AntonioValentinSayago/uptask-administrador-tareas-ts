@@ -1,4 +1,4 @@
-# UpTask - Task Manager V 2.0.4
+# UpTask - Task Manager V 2.0.5
 
 UpTask es una aplicación de administración de tareas basada en el stack **MERN** (**MongoDB, Express, React, Node.js**) con **TypeScript**, diseñada para facilitar la gestión de proyectos y tareas en equipo.
 
@@ -23,7 +23,7 @@ UpTask es una aplicación de administración de tareas basada en el stack **MERN
 - ⚛️ **React** + **Vite**
 - 🏷 **TypeScript**
 - 🎨 **Tailwind CSS**
-- 🌍 **React Router DOM**
+- 🌍 **React Router DOM**5
 - 🔥 **Context API / Zustand**
 
 ### 📌 Backend
