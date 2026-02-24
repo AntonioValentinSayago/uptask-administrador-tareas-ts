@@ -22,7 +22,7 @@ UpTask es una aplicación de administración de tareas basada en el stack **MERN
 ### 📌 Frontend
 - ⚛️ **React** + **Vite**
 - 🏷 **TypeScript**
-- 🎨 **Tailwind CSS**
+- 🎨 **Tailwind CSS con Vite**
 - 🌍 **React Router DOM**5
 - 🔥 **Context API / Zustand**
 
