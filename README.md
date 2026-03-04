@@ -1,4 +1,4 @@
-# Serguimiento de Folio SN - Service Now V 2.1.4 2026
+# Serguimiento de Folio SN - Service Now V 2.2.4 2026
 
 UpTask es una aplicación de administración de tareas basada en el stack **MERN** (**MongoDB, Express, React, Node.js**) con **TypeScript**, diseñada para facilitar la gestión de proyectos y tareas en equipo.
 se trabaja en una migracion
