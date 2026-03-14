@@ -3,7 +3,7 @@
 UpTask es una aplicación de administración de tareas basada en el stack **MERN** (**MongoDB, Express, React, Node.js**) con **TypeScript**, diseñada para facilitar la gestión de proyectos y tareas en equipo.
 se trabaja en una migracion
 se migra en nuevo repositorio
-## 🚀 Características Principales 
+## 🚀 Características Principales del sistema
 
 - 🔐 **Autenticación y autorización** (JWT + Cookies)
 - 👥 **Gestión de usuarios** (Registro, inicio de sesión, recuperación de contraseña)
